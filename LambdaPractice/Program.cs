@@ -40,15 +40,23 @@ namespace LambdaPractice
             Console.WriteLine(products.OrderBy(x => x.Length).First());
 
             //print the product with the 3rd shortest name to the console using an index or Skip/Take (you must convert the results to a list using .ToList()).  
-            Console.WriteLine();
+            List<string> third = products.OrderBy(x => x.Length).Skip(2).Take(1).ToList();
+            Console.WriteLine(third);
             //print the ballProduct with the 2nd longest name to the console using an index or Skip/Take (you must convert the results to a list using .ToList()). 
 
             //declare a variable reversedProducts and set it equal to all products ordered by the longest word first. (use the OrderByDescending() extension).
-
+            List<string> reversedProducts = products.OrderByDescending(x => x).ToList<string>();
             //print out the reversedProducts to the console using a foreach loop.
-
+            foreach (string item in reversedProducts)
+            {
+                Console.WriteLine(item);
+            }
             //print out all the products ordered by the longest word first using the OrderByDecending() extension and a foreach loop.  
             //Note: you will not use a variable to store your list
+            foreach (string item in products.OrderByDescending(x => x.Length))
+            {
+                Console.WriteLine(item);
+            }
 
             //FILL IN THE FUNCTIONS BELOW TO MAKE THE TESTS PASS
 
@@ -58,13 +66,13 @@ namespace LambdaPractice
         public static string LongestName(List<string> inputList)
         {
             //with the input list, return the item with the longest name
-            return string.Empty;
+            return inputList.OrderByDescending(x => x.Length).First();
         }
 
         public static string ShortestName(List<string> inputList)
         {
             //with the input list, return the item with the shortest name
-            return string.Empty;
+            return inputList.OrderBy(x => x.Length).First();
         }
 
         public static string SecondLongestName(List<string> inputList)
@@ -87,7 +95,7 @@ namespace LambdaPractice
         public static List<string> EndInS(List<string> inputList)
         {
             //with the input list, return a list with only the the products that end with the letter s
-            return inputList;
+            return inputList.Where(x => x.Last() == 's');
         }
     }
 }
