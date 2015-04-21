@@ -40,10 +40,17 @@ namespace LambdaPractice
             Console.WriteLine(products.OrderBy(x => x.Length).First());
 
             //print the product with the 3rd shortest name to the console using an index or Skip/Take (you must convert the results to a list using .ToList()).  
-            List<string> third = products.OrderBy(x => x.Length).Skip(2).Take(1).ToList();
-            Console.WriteLine(third);
+            List<string> third = products.OrderBy(x => x.Length).Skip(2).Take(1).ToList<string>();
+            foreach (string item in third)
+            {
+                Console.WriteLine(item);
+            }
             //print the ballProduct with the 2nd longest name to the console using an index or Skip/Take (you must convert the results to a list using .ToList()). 
-
+            List<string> second = products.OrderByDescending(x => x.Length).Skip(1).Take(1).ToList<string>();
+            foreach (string item in second)
+            {
+                Console.WriteLine(item);
+            }
             //declare a variable reversedProducts and set it equal to all products ordered by the longest word first. (use the OrderByDescending() extension).
             List<string> reversedProducts = products.OrderByDescending(x => x).ToList<string>();
             //print out the reversedProducts to the console using a foreach loop.
@@ -78,24 +85,34 @@ namespace LambdaPractice
         public static string SecondLongestName(List<string> inputList)
         {
             //with the input list, return the item with the second longest name
+            List<string> second = inputList.OrderByDescending(x => x.Length).Skip(1).Take(1).ToList<string>();
+            foreach (string item in second)
+            {
+                return (item);
+            }
             return string.Empty;
         }
 
         public static string ThirdShortestName(List<string> inputList)
         {
             //with the input list, return the item with the third shortest name
+            List<string> third = inputList.OrderBy(x => x.Length).Skip(2).Take(1).ToList<string>();
+            foreach (string item in third)
+            {
+                return (item);
+            }
             return string.Empty;
         }
 
         public static List<string> BallProducts(List<string> inputList)
         {
             //with the input list, return a list with only the the products that contain the word ball
-            return inputList;
+            return inputList.Where(x => x.Contains("ball")).ToList<string>();;
         }
         public static List<string> EndInS(List<string> inputList)
         {
             //with the input list, return a list with only the the products that end with the letter s
-            return inputList.Where(x => x.Last() == 's');
+            return inputList;
         }
     }
 }
