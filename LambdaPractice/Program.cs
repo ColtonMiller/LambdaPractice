@@ -112,7 +112,7 @@ namespace LambdaPractice
         public static List<string> EndInS(List<string> inputList)
         {
             //with the input list, return a list with only the the products that end with the letter s
-            return inputList;
+            return inputList.Where(x => x.ToLower().Last() == 's').ToList<string>();
         }
     }
 }
